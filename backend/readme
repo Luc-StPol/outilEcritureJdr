@@ -1,0 +1,17 @@
+--- PNJ ROUTES ---
+
+-- POST --
+
+Ajouté un pnj
+http://localhost:4200/api/pnj/add
+
+recherché un pnj par lieu
+http://localhost:4200/api/pnj/searchbylocation
+
+-- GET --
+
+récupérer pnj par l'id
+http://localhost:4200/api/pnj/:id
+
+récupérer tout les pnj
+http://localhost:4200/api/pnj/
