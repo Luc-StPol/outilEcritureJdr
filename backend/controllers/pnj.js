@@ -29,3 +29,9 @@ exports.findPnjLocation = (req, res, next) => {
     .then((pnj) => res.status(200).json(pnj))
     .catch((error) => res.status(400).json({ error }));
 };
+
+exports.deletePnj = (req, res, next) => {
+  Pnj.deleteOne({ _id: req.params.id })
+    .then(() => res.status(200).json({ message: 'pnj suprimer' }))
+    .catch((error) => res.status(400).json({ error }));
+};

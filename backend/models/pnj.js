@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const pnjSchema = mongoose.Schema({
+  jdrId: { type: String, require: true },
   nom: { type: String, require: true, unique: true },
   race: { type: String, require: true },
   age: { type: String, require: true },

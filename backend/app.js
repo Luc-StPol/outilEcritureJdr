@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
 
+const jdrRoutes = require('./routes/jdr.js');
 const pnjRoutes = require('./routes/pnj.js');
 const villeRoutes = require('./routes/ville.js');
 
@@ -26,6 +28,8 @@ app.use((req, res, next) => {
 });
 
 //Routes
+app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('/api/jdr', jdrRoutes);
 app.use('/api/pnj', pnjRoutes);
 app.use('/api/villes', villeRoutes);
 

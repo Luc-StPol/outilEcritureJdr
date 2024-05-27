@@ -1,3 +1,51 @@
+--- JDR ROUTES ---
+
+-- POST --
+Créer un nouveau Jdr
+http://localhost:4200/api/jdr/addjdr
+
+Ajouter un nouveau chapitre
+http://localhost:4200/api/jdr/addchapitre/:id - jdr
+
+Modifier un chapitre
+http://localhost:4200/api/jdr/updatechapitre/:id - chapitre
+
+-- GET --
+Récupérer un Jdr
+http://localhost:4200/api/jdr/:id - jdr
+
+Récupérer tout les Jdr
+http://localhost:4200/api/jdr/
+
+-- DELETE --
+Suprimer un chapitre
+http://localhost:4200/api/jdr/deletechap/:id - chapitre
+
+Suprimer un jdr
+http://localhost:4200/api/jdr/deletejdr/:id - jdr
+
+--- VILLES ROUTES ---
+
+-- POST --
+
+Ajouté une ville
+http://localhost:4200/api/villes/addville
+
+Modifier une ville
+http://localhost:4200/api/villes/updateville/:id
+
+-- GET --
+
+Récupérer ville par l'id
+http://localhost:4200/api/villes/:id - ville
+
+Récupérer toute les villes
+http://localhost:4200/api/villes/
+
+-- DELETE --
+Suprimer une ville
+http://localhost:4200/api/villes/deleteville/:id - ville
+
 --- PNJ ROUTES ---
 
 -- POST --
@@ -5,13 +53,17 @@
 Ajouté un pnj
 http://localhost:4200/api/pnj/add
 
-recherché un pnj par lieu
+Recherché un pnj par lieu
 http://localhost:4200/api/pnj/searchbylocation
 
 -- GET --
 
-récupérer pnj par l'id
-http://localhost:4200/api/pnj/:id
+Récupérer pnj par l'id
+http://localhost:4200/api/pnj/:id - pnj
 
-récupérer tout les pnj
+Récupérer tout les pnj
 http://localhost:4200/api/pnj/
+
+-- DELETE --
+Suprimer un pnj
+http://localhost:4200/api/pnj/deletepnj/:id -pnj
