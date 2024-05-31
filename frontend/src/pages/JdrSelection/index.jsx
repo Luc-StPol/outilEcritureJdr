@@ -1,33 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import { useFetch } from '../../utils/hooks/useFetch';
 import JdrSelectionBox from '../../components/JdrSelectionBox';
 import '../../styles/jdrStyle.scss';
 
 import { Spinner } from 'react-bootstrap';
 
 export default function JdrSelection() {
-  // const [dataLoading, setDataLoading] = useState(false);
-  // const [data, setData] = useState();
+  const [data, setData] = useState({});
+  const [dataLoading, setDataLoading] = useState(true);
+  const [update, setUpdate] = useState(1);
 
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const url = `http://localhost:4200/api/jdr/`;
-  //     try {
-  //       const response = await fetch(url);
-  //       const responseJson = await response.json();
-  //       setData({ responseJson });
-  //       console.log(data);
-  //     } catch (err) {
-  //       console.log(err);
-  //     } finally {
-  //       setDataLoading(false);
-  //     }
-  //   }
-  //   setDataLoading(true);
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    async function fetchData() {
+      const url = `http://localhost:4200/api/jdr/`;
+      try {
+        const response = await fetch(url);
+        const responseJson = await response.json();
 
-  const { data, dataLoading } = useFetch();
+        setData(responseJson);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setDataLoading(false);
+      }
+    }
+    setDataLoading(true);
+    fetchData();
+  }, [update]);
 
   return (
     <div>
@@ -38,7 +36,7 @@ export default function JdrSelection() {
       ) : (
         <div className="jdrSelection">
           {data.map((jdr) => (
-            <JdrSelectionBox jdr={jdr} key={jdr._id} />
+            <JdrSelectionBox jdr={jdr} key={jdr._id} update={update} setUpdate={setUpdate} />
           ))}
         </div>
       )}

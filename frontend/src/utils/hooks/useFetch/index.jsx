@@ -23,5 +23,5 @@ export function useFetch(url, request) {
     setDataLoading(true);
     fetchData();
   }, [url]);
-  return { dataLoading, setDataLoading, data, setData, error };
+  return { dataLoading, data, setData, error };
 }

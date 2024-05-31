@@ -18,16 +18,19 @@ export default function JdrSelectionBox(props) {
     const request = {
       method: 'DELETE',
     };
-    props.update(false);
+
     await fetch(url, request);
     setShow(false);
+    props.setUpdate(props.update + 1);
     console.log('delete jdr');
   }
 
   return (
     <div className="jdrSelectionBox" key={jdr._id}>
       <Link to={`/jdr/${jdr._id}`}>{jdr.jdrTitle}</Link>
+
       <FontAwesomeIcon icon={faTrash} onClick={handleShow} />
+
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
