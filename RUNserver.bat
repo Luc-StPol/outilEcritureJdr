@@ -1,0 +1,3 @@
+cd .\backend\
+nodemon server
+
