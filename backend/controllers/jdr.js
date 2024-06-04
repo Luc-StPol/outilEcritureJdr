@@ -8,14 +8,14 @@ const fs = require('fs');
 
 exports.addJdr = (req, res, next) => {
   const jdr = new Jdr({
-    jdrTitle: JSON.parse(req.body.jdrTitle),
-    mapTitle: JSON.parse(req.body.mapTitle),
+    jdrTitle: req.body.jdrTitle,
+    mapTitle: req.body.mapTitle,
     mapImg: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
   });
   jdr
     .save()
-    .then(() => res.status(201).json({ message: 'Nouveau Jdr ajouté' }))
-    .catch((error) => res.status(400).json({ error }));
+    .then(() => res.status(201).json('true'))
+    .catch((error) => res.status(400).json({ message: 'true' }));
 };
 
 exports.findJdr = (req, res, next) => {
@@ -35,13 +35,13 @@ exports.findAllJdr = (req, res, next) => {
 exports.updateJdr = (req, res, next) => {
   const mapObject = req.file
     ? {
-        jdrTitle: JSON.parse(req.body.jdrTitle),
-        mapTitle: JSON.parse(req.body.mapTitle),
+        jdrTitle: req.body.jdrTitle,
+        mapTitle: req.body.mapTitle,
         mapImg: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
       }
     : {
-        jdrTitle: JSON.parse(req.body.jdrTitle),
-        mapTitle: JSON.parse(req.body.mapTitle),
+        jdrTitle: req.body.jdrTitle,
+        mapTitle: req.body.mapTitle,
       };
   if (req.file) {
     Jdr.findOne({ _id: req.params.id }).then((jdr) => {
@@ -118,7 +118,7 @@ exports.updateChapitre = (req, res, next) => {
       $set: { ...req.body },
     }
   )
-    .then((jdr) => res.status(200).json(jdr))
+    .then(() => res.status(200).json({ message: 'Jdr Update' }))
     .catch((error) => res.status(400).json({ error }));
 };
 

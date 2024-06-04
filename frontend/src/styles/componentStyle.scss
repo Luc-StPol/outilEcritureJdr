@@ -1,0 +1,33 @@
+
+.showChapter {
+
+    .modifyChapter {
+        width: 100%;
+        border: none;
+        outline: none;
+    }
+
+    .accordion-button {
+        background-color: #cfe2ff !important;
+        *{background-color: #cfe2ff !important}
+        textarea {
+            resize: none;
+            margin-left: 10px;
+            margin-top: 5px;
+        }
+    }
+
+    .accordionTitle {
+        display: flex;
+        justify-content: space-between;
+        width: 95%;
+    }
+}
+
+.addChapter {
+    margin: 15px;
+    button {
+        border-radius: 5px;
+        background-color: white;
+    }
+}

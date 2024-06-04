@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import JdrSelectionBox from '../../components/JdrSelectionBox';
 import '../../styles/jdrStyle.scss';
 
@@ -28,18 +29,21 @@ export default function JdrSelection() {
   }, [update]);
 
   return (
-    <div>
+    <div className="jdrSelection">
       {dataLoading ? (
         <Spinner animation="border" role="status">
           <span className="visually-hidden">Loading...</span>
         </Spinner>
       ) : (
-        <div className="jdrSelection">
+        <div>
           {data.map((jdr) => (
             <JdrSelectionBox jdr={jdr} key={jdr._id} update={update} setUpdate={setUpdate} />
           ))}
         </div>
       )}
+      <div>
+        <Link to={'/addjdr'}>Créer un nouveau Jdr</Link>
+      </div>
     </div>
   );
 }

@@ -1,25 +1,17 @@
-import React from 'react';
 import { useState } from 'react';
-
-import { Modal, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
-export default function JdrSelectionBox(props) {
-  const jdr = props.jdr;
-
+export default function DeleteChapter(props) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  function loginJdr() {
-    sessionStorage.setItem('jdrId', jdr._id);
-    window.location.reload(false);
-  }
-
-  async function deleteJdr() {
-    const url = `http://localhost:4200/api/jdr/deletejdr/${jdr._id}`;
+  async function deleteChap() {
+    const url = `http://localhost:4200/api/jdr/deletechap/${props.chapId}`;
     const request = {
       method: 'DELETE',
     };
@@ -30,23 +22,23 @@ export default function JdrSelectionBox(props) {
   }
 
   return (
-    <div className="jdrSelectionBox" key={jdr._id}>
-      <p onClick={loginJdr}>{jdr.jdrTitle}</p>
-
-      <FontAwesomeIcon icon={faTrash} onClick={handleShow} />
+    <>
+      <Button variant="secondary" onClick={handleShow}>
+        <FontAwesomeIcon icon={faTrash} />
+      </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton></Modal.Header>
-        <Modal.Body>Êtes-vous sur de vouloir supprimer définitivement "{jdr.jdrTitle}" ?</Modal.Body>
+        <Modal.Body>Supprimer définitivement ce chapitre ?</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Annuler
           </Button>
-          <Button variant="primary" onClick={deleteJdr}>
+          <Button variant="primary" onClick={deleteChap}>
             Supprimer
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
+    </>
   );
 }

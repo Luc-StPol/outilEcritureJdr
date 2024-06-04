@@ -8,3 +8,18 @@
 .globalStyle {
     margin: 10px;
 }
+
+.header {
+    div {
+    display: flex;
+    justify-content: space-around;
+    width: 90%;
+    font-size: 20px;
+    }
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+    button {
+        font-size: 13px;
+    }
+}

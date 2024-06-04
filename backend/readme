@@ -17,6 +17,12 @@ http://localhost:4200/api/jdr/:id - jdr
 Récupérer tout les Jdr
 http://localhost:4200/api/jdr/
 
+Récupérer un chapitre
+http://localhost:4200/api/jdr/findchapitre/:id - jdr
+
+Récupérer tout les chapitre d'un jdr
+http://localhost:4200/api/jdr/findallchapitre/:id - jdr
+
 -- DELETE --
 Suprimer un chapitre
 http://localhost:4200/api/jdr/deletechap/:id - chapitre
