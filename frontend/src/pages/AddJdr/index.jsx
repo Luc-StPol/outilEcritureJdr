@@ -37,7 +37,7 @@ export default function AddJdr() {
 
   return (
     <div>
-      <form encType={'multiârt/form-data'} id="formData" onSubmit={submit} className="addJdr">
+      <form encType={'multipart/form-data'} id="formData" onSubmit={submit} className="addJdr">
         <div onClick={goBack} className="icon">
           <FontAwesomeIcon icon={faArrowLeft} />
         </div>

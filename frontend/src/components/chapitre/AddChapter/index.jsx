@@ -11,7 +11,7 @@ export default function AddChapter(props) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ chapNumber: chapNumber }),
     };
-    fetch(url, request);
+    fetch(url, request).then(() => props.setUpdate(props.update + 1));
   }
 
   return (

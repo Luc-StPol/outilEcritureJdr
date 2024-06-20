@@ -1,10 +1,17 @@
 const Ville = require('../models/ville.js');
+const fs = require('fs');
 
 exports.addVille = (req, res, next) => {
   const ville = new Ville({
     jdrId: req.body.jdrId,
     nom: req.body.nom,
     type: req.body.type,
+    markerPos: [
+      {
+        top: req.body.markerPositonTop,
+        left: req.body.markerPositonLeft,
+      },
+    ],
     mapImg: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
   });
   ville

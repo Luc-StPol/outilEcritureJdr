@@ -31,3 +31,17 @@
         background-color: white;
     }
 }
+
+.interractiveMap{
+    position: relative;
+    width: 80%;
+    margin: auto;
+    .map {
+        width: 100%;
+    }
+    .targetIcon{
+        position: absolute;
+        height: 20px;
+        width: 20px;
+    }
+}
