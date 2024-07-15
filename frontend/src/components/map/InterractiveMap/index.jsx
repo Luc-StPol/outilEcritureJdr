@@ -1,23 +1,20 @@
-import useFetch from '../../../utils/hooks/useFetch';
-import Spinner from 'react-bootstrap/Spinner';
 import '../../../styles/componentStyle.scss';
 import MoveMarker from '../MoveMarker';
+import MarkerList from '../MarkerList';
+import { WaitingScrean } from '../../../utils/commun';
 
 export default function InterractiveMap(props) {
-  const jdrId = sessionStorage.getItem('jdrId');
-  const url = `http://localhost:4200/api/jdr/${jdrId}`;
-  const { data, dataLoading } = useFetch(url);
+  const data = props.data;
 
   return (
     <>
-      {dataLoading ? (
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
+      {props.dataLoading ? (
+        <WaitingScrean />
       ) : (
         <MoveMarker data={data} showImage={props.showImage} pos={props.pos} setPos={props.setPos}>
           <div>
             <img src={data.mapImg} alt="map" className="map" />
+            <MarkerList locationData={props.locationData} />
           </div>
         </MoveMarker>
       )}

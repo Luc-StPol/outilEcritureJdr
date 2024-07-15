@@ -10,6 +10,7 @@ import JdrPnj from './pages/JdrPnj';
 import JdrQuest from './pages/JdrQuest';
 import JdrStory from './pages/JdrStory';
 import './styles/globalStyle.scss';
+import CityMap from './pages/CityMap';
 
 function App() {
   const jdrId = sessionStorage.getItem('jdrId');
@@ -33,6 +34,7 @@ function App() {
           <Routes>
             <Route path="/" element={<JdrHome />} />
             <Route path="/carte" element={<JdrMap />} />
+            <Route path="/carte/lieu/:locationId" element={<CityMap />} />
             <Route path="/pnj" element={<JdrPnj />} />
             <Route path="/quetes" element={<JdrQuest />} />
             <Route path="/histoire" element={<JdrStory />} />

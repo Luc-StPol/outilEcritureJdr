@@ -29,7 +29,7 @@ exports.findVille = (req, res, next) => {
 };
 
 exports.findAllVille = (req, res, next) => {
-  Ville.find()
+  Ville.find({ jdrId: req.params.id })
     .then((villes) => res.status(200).json(villes))
     .catch((error) => res.status(400).json({ error }));
 };
@@ -37,21 +37,11 @@ exports.findAllVille = (req, res, next) => {
 exports.updateVille = (req, res, next) => {
   const villeObject = req.file
     ? {
-        jdrId: req.body.jdrId,
-        nom: req.body.nom,
         mapImg: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
-        type: req.body.type,
-        places: req.body.places,
-        commerces: req.body.commerces,
-        habitations: req.body.habitations,
+        ...req.body,
       }
     : {
-        jdrId: req.body.jdrId,
-        nom: req.body.nom,
-        type: req.body.type,
-        places: req.body.places,
-        commerces: req.body.commerces,
-        habitations: req.body.habitations,
+        ...req.body,
       };
   if (req.file) {
     Ville.findOne({ _id: req.params.id }).then((ville) => {
@@ -78,4 +68,15 @@ exports.deleteVille = (req, res, next) => {
         .catch((error) => res.status(400).json({ error }));
     });
   });
+};
+
+exports.addLocation = (req, res, next) => {
+  console.log(req.body);
+  Ville.findOne({ _id: req.params.id })
+    .then((ville) => {
+      ville.place.push({ ...req.body });
+      ville.save();
+      res.status(200).json(ville);
+    })
+    .catch((error) => res.status(400).json({ error }));
 };

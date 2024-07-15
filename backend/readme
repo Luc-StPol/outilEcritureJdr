@@ -40,13 +40,16 @@ http://localhost:4200/api/villes/addville
 Modifier une ville
 http://localhost:4200/api/villes/updateville/:id
 
+Ajouter une place
+http://localhost:4200/api/villes/addplace/:id
+
 -- GET --
 
 Récupérer ville par l'id
 http://localhost:4200/api/villes/:id - ville
 
 Récupérer toute les villes
-http://localhost:4200/api/villes/
+http://localhost:4200/api/villes/all/:id jdr
 
 -- DELETE --
 Suprimer une ville

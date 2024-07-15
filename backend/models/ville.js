@@ -6,9 +6,16 @@ const villeSchema = mongoose.Schema({
   mapImg: { type: String, require: true },
   markerPos: [{ top: { type: String }, left: { type: String } }],
   type: { type: String, require: true },
-  places: [{ type: String }],
-  commerces: [{ type: String }],
-  habitations: [{ type: String }],
+  description: { type: String },
+  place: [
+    {
+      name: { type: String },
+      type: { type: String },
+      markerPos: [{ top: { type: String }, left: { type: String } }],
+      description: { type: String },
+      pnj: { type: String },
+    },
+  ],
 });
 
 module.exports = mongoose.model('Ville', villeSchema);

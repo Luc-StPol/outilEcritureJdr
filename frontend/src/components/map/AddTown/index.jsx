@@ -52,6 +52,7 @@ export default function AddTown(props) {
           <option value="Ville">Ville</option>
           <option value="Village">Vilage</option>
           <option value="Site">Site</option>
+          <option value="Donjon">Donjon</option>
         </Form.Select>
         <Form.Group>
           <Button variant="secondary" onClick={() => props.setShowImage(!props.showImage)}>
