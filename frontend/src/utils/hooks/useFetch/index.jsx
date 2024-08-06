@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { UpdateComponent } from '../../contexts';
 
 export default function useFetch(url, request) {
   const [data, setData] = useState({});
   const [dataLoading, setDataLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [update, setUpdate] = useState(1);
+
+  const update = useContext(UpdateComponent);
 
   useEffect(() => {
     if (!url) return;
@@ -24,5 +26,5 @@ export default function useFetch(url, request) {
     setDataLoading(true);
     fetchData();
   }, [url, request, update]);
-  return { dataLoading, data, setData, error, update, setUpdate };
+  return { dataLoading, data, setData, error, update };
 }

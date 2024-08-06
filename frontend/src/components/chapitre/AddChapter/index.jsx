@@ -1,6 +1,9 @@
+import { useContext } from 'react';
 import useFetch from '../../../utils/hooks/useFetch';
 import Spinner from 'react-bootstrap/Spinner';
+import { UpdateComponent } from '../../../utils/contexts';
 export default function AddChapter(props) {
+  const { update, setUpdate } = useContext(UpdateComponent);
   const { data, dataLoading } = useFetch(`http://localhost:4200/api/jdr/findallchapitre/${props.jdrId}`);
   function sendChapter() {
     const chapNumber = data.length + 1;
@@ -11,7 +14,7 @@ export default function AddChapter(props) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ chapNumber: chapNumber }),
     };
-    fetch(url, request).then(() => props.setUpdate(props.update + 1));
+    fetch(url, request).then(() => setUpdate(!update));
   }
 
   return (

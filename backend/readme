@@ -43,6 +43,9 @@ http://localhost:4200/api/villes/updateville/:id
 Ajouter une place
 http://localhost:4200/api/villes/addplace/:id
 
+Modifier une place
+http://localhost:4200/api/villes/updateville/:id/updateplace/:placeId
+
 -- GET --
 
 Récupérer ville par l'id
@@ -65,13 +68,23 @@ http://localhost:4200/api/pnj/add
 Recherché un pnj par lieu
 http://localhost:4200/api/pnj/searchbylocation
 
+
+
 -- GET --
 
 Récupérer pnj par l'id
 http://localhost:4200/api/pnj/:id - pnj
 
 Récupérer tout les pnj
-http://localhost:4200/api/pnj/
+http://localhost:4200/api/pnj/all/:jdrId - jdr
+
+Récupérer pnj par le nom
+http://localhost:4200/api/pnj/research?names=${name}&jdrId=${jdrId} - pnj
+
+
+-- PUT -- 
+Modifier un pnj
+http://localhost:4200/api/pnj/:id - pnj
 
 -- DELETE --
 Suprimer un pnj

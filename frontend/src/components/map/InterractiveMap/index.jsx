@@ -11,12 +11,21 @@ export default function InterractiveMap(props) {
       {props.dataLoading ? (
         <WaitingScrean />
       ) : (
-        <MoveMarker data={data} showImage={props.showImage} pos={props.pos} setPos={props.setPos}>
-          <div>
-            <img src={data.mapImg} alt="map" className="map" />
-            <MarkerList locationData={props.locationData} />
-          </div>
-        </MoveMarker>
+        <div className="interractiveMap">
+          <h1>{data.mapTitle ? data.mapTitle : data.nom}</h1>
+          <MoveMarker
+            data={data}
+            showImage={props.showImage}
+            pos={props.pos}
+            setPos={props.setPos}
+            markerType={props.markerType}
+          >
+            <div className="map">
+              <img src={data.mapImg} alt="map" className="mapImg" />
+              <MarkerList locationData={props.locationData} />
+            </div>
+          </MoveMarker>
+        </div>
       )}
     </>
   );

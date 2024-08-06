@@ -6,12 +6,12 @@ export default function JdrStory() {
   const jdrId = sessionStorage.getItem('jdrId');
 
   const url = `http://localhost:4200/api/jdr/findallchapitre/${jdrId}`;
-  const { data, dataLoading, update, setUpdate } = useFetch(url);
+  const { data, dataLoading } = useFetch(url);
 
   return (
     <div>
-      <ShowChapter jdrId={jdrId} data={data} dataLoading={dataLoading} update={update} setUpdate={setUpdate} />
-      <AddChapter jdrId={jdrId} update={update} setUpdate={setUpdate} />
+      <ShowChapter jdrId={jdrId} data={data} dataLoading={dataLoading} />
+      <AddChapter jdrId={jdrId} />
     </div>
   );
 }

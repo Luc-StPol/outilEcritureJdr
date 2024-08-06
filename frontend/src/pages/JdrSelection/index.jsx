@@ -4,29 +4,10 @@ import JdrSelectionBox from '../../components/JdrSelectionBox';
 import '../../styles/jdrStyle.scss';
 
 import { Spinner } from 'react-bootstrap';
+import useFetch from '../../utils/hooks/useFetch';
 
 export default function JdrSelection() {
-  const [data, setData] = useState({});
-  const [dataLoading, setDataLoading] = useState(true);
-  const [update, setUpdate] = useState(1);
-
-  useEffect(() => {
-    async function fetchData() {
-      const url = `http://localhost:4200/api/jdr/`;
-      try {
-        const response = await fetch(url);
-        const responseJson = await response.json();
-
-        setData(responseJson);
-      } catch (err) {
-        console.log(err);
-      } finally {
-        setDataLoading(false);
-      }
-    }
-    setDataLoading(true);
-    fetchData();
-  }, [update]);
+  const { data, dataLoading } = useFetch(`http://localhost:4200/api/jdr/`);
 
   return (
     <div className="jdrSelection">
@@ -36,9 +17,14 @@ export default function JdrSelection() {
         </Spinner>
       ) : (
         <div>
-          {data.map((jdr) => (
-            <JdrSelectionBox jdr={jdr} key={jdr._id} update={update} setUpdate={setUpdate} />
-          ))}
+          {' '}
+          {data ? (
+            <div>
+              {data.map((jdr) => (
+                <JdrSelectionBox jdr={jdr} key={jdr._id} />
+              ))}
+            </div>
+          ) : null}
         </div>
       )}
       <div>

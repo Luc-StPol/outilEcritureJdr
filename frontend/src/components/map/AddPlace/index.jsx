@@ -1,9 +1,17 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+
+import siteIcon from '../../../asset/icons/siteIcon.png';
+import habitationIcon from '../../../asset/icons/habitation.png';
+import marketPlaceIcon from '../../../asset/icons/MarketPlace.png';
+import taverneIcon from '../../../asset/icons/taverne.png';
 
 export default function AddPlace(props) {
   const [name, setName] = useState();
+  const [open, setOpen] = useState();
   const [type, setType] = useState();
   const [description, setDescription] = useState();
 
@@ -20,6 +28,7 @@ export default function AddPlace(props) {
       type: type,
       markerPos: markerPos,
       description: description,
+      id: Math.random(),
     };
     console.log(body);
     const url = `http://localhost:4200/api/villes/addplace/${props.locationId}`;
@@ -36,30 +45,77 @@ export default function AddPlace(props) {
   }
 
   return (
-    <>
-      <Form onSubmit={submit}>
-        <Form.Group>
-          <Form.Label>Nom</Form.Label>
-          <Form.Control required type="text" onChange={(e) => setName(e.target.value)} />
-        </Form.Group>
-        <Form.Select aria-label="Default select example" onChange={(e) => setType(e.target.value)}>
-          <option>Type de lieu</option>
-          <option value="habitation">Habitation</option>
-          <option value="commerce">Commerce</option>
-          <option value="auberge">Auberge</option>
-          <option value="place">Lieu publique</option>
-        </Form.Select>
-        <Form.Group>
-          <Form.Label>Description</Form.Label>
-          <Form.Control as="textarea" onChange={(e) => setDescription(e.target.value)} />
-        </Form.Group>
-        <Form.Group>
-          <Button variant="secondary" onClick={() => props.setShowImage(!props.showImage)}>
-            Poser le marker
-          </Button>
-        </Form.Group>
-        <Button type="submit">Sauvegarder</Button>
-      </Form>
-    </>
+    <div className="addMarker">
+      <h2 onClick={() => setOpen(!open)}>
+        <FontAwesomeIcon icon={faPlus} />
+      </h2>
+      <form onSubmit={submit} className={open ? 'open' : null}>
+        <div className="radioInput">
+          <input
+            name="type"
+            id="habitation"
+            value="habitation"
+            type="radio"
+            onChange={(e) => {
+              setType(e.target.value);
+              props.setShowImage(true);
+              props.setMarkerType(4);
+            }}
+          />
+          <label for="habitation">
+            <img src={habitationIcon} alt="icone" />
+          </label>
+          <input
+            name="type"
+            id="auberge"
+            value="auberge"
+            type="radio"
+            onChange={(e) => {
+              setType(e.target.value);
+              props.setShowImage(true);
+              props.setMarkerType(5);
+            }}
+          />
+          <label for="auberge">
+            <img src={taverneIcon} alt="icone" />
+          </label>
+
+          <input
+            name="type"
+            id="commerce"
+            value="commerce"
+            type="radio"
+            onChange={(e) => {
+              setType(e.target.value);
+              props.setShowImage(true);
+              props.setMarkerType(6);
+            }}
+          />
+          <label for="commerce">
+            <img src={marketPlaceIcon} alt="icone" />
+          </label>
+
+          <input
+            name="type"
+            id="place"
+            value="place"
+            type="radio"
+            onChange={(e) => {
+              setType(e.target.value);
+              props.setShowImage(true);
+              props.setMarkerType(3);
+            }}
+          />
+          <label for="place">
+            <img src={siteIcon} alt="icone" />
+          </label>
+        </div>
+        <input required name="nom" type="text" onChange={(e) => setName(e.target.value)} placeholder="nom du marker" />
+        <textarea placeholder="description" onChange={(e) => setDescription(e.target.value)}></textarea>
+        <Button variant="dark" size="sm" type="submit">
+          Sauvegarder
+        </Button>
+      </form>
+    </div>
   );
 }

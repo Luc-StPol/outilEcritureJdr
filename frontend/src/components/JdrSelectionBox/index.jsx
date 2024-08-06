@@ -1,17 +1,10 @@
-import React from 'react';
-import { useState } from 'react';
-
-import { Modal, Button } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import React, { useContext } from 'react';
+import DeletePopup from '../commun/DeletePopup';
+import { UpdateComponent } from '../../utils/contexts';
 
 export default function JdrSelectionBox(props) {
   const jdr = props.jdr;
-
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const { update, setUpdate } = useContext(UpdateComponent);
 
   function loginJdr() {
     sessionStorage.setItem('jdrId', jdr._id);
@@ -25,28 +18,14 @@ export default function JdrSelectionBox(props) {
     };
 
     await fetch(url, request);
-    setShow(false);
-    props.setUpdate(props.update + 1);
+    setUpdate(!update);
   }
 
   return (
     <div className="jdrSelectionBox" key={jdr._id}>
       <p onClick={loginJdr}>{jdr.jdrTitle}</p>
 
-      <FontAwesomeIcon icon={faTrash} onClick={handleShow} />
-
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton></Modal.Header>
-        <Modal.Body>Êtes-vous sur de vouloir supprimer définitivement "{jdr.jdrTitle}" ?</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Annuler
-          </Button>
-          <Button variant="primary" onClick={deleteJdr}>
-            Supprimer
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <DeletePopup title={jdr.jdrTitle} delData={deleteJdr} />
     </div>
   );
 }

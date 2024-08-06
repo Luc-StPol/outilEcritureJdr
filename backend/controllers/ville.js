@@ -71,12 +71,36 @@ exports.deleteVille = (req, res, next) => {
 };
 
 exports.addLocation = (req, res, next) => {
-  console.log(req.body);
   Ville.findOne({ _id: req.params.id })
     .then((ville) => {
       ville.place.push({ ...req.body });
       ville.save();
       res.status(200).json(ville);
     })
+    .catch((error) => res.status(400).json({ error }));
+};
+
+exports.updatePlace = (req, res, next) => {
+  Ville.findOne({ _id: req.params.id })
+    .then((ville) => {
+      console.log(ville.place);
+      if (!ville) {
+        res.status(404).json({ message: 'ville non trouvé' });
+      }
+
+      const place = ville.place.find((p) => p.id === req.params.placeId);
+      if (!place) {
+        return res.status(404).json({ message: 'Place non trouvée' });
+      }
+      console.log(place._id);
+
+      for (const key in req.body) {
+        if (req.body.hasOwnProperty(key)) {
+          place[key] = req.body[key];
+        }
+      }
+      return ville.save();
+    })
+    .then(() => res.status(200).json({ message: 'Place modifiée' }))
     .catch((error) => res.status(400).json({ error }));
 };

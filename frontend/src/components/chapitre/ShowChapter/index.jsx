@@ -26,7 +26,7 @@ export default function ShowChapter(props) {
                       </div>
                     </div>
                     <div>
-                      <DeleteChapter chapId={chap._id} update={props.update} setUpdate={props.setUpdate} />
+                      <DeleteChapter chapId={chap._id} update={props.update} />
                     </div>
                   </div>
                 </Accordion.Header>

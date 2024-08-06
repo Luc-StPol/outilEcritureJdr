@@ -1,47 +1,102 @@
-
 .showChapter {
+  .modifyChapter {
+    width: 100%;
+    border: none;
+    outline: none;
+  }
 
-    .modifyChapter {
-        width: 100%;
-        border: none;
-        outline: none;
+  .accordion-button {
+    background-color: #cfe2ff !important;
+    * {
+      background-color: #cfe2ff !important;
     }
+    textarea {
+      resize: none;
+      margin-left: 10px;
+      margin-top: 5px;
+    }
+  }
 
-    .accordion-button {
-        background-color: #cfe2ff !important;
-        *{background-color: #cfe2ff !important}
-        textarea {
-            resize: none;
-            margin-left: 10px;
-            margin-top: 5px;
-        }
-    }
-
-    .accordionTitle {
-        display: flex;
-        justify-content: space-between;
-        width: 95%;
-    }
+  .accordionTitle {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+  }
 }
 
 .addChapter {
-    margin: 15px;
-    button {
-        border-radius: 5px;
-        background-color: white;
-    }
+  margin: 15px;
+  button {
+    border-radius: 5px;
+    background-color: white;
+  }
 }
 
-.interractiveMap{
-    position: relative;
-    width: 80%;
-    margin: auto;
-    .map {
-        width: 100%;
+.interractiveMap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .mapImg {
+    width: auto;
+
+    max-width: 100%;
+    max-height: 800px;
+    margin: 15px;
+    border-radius: 15px;
+    box-shadow: 11px 11px 26px 8px rgba(0, 0, 0, 0.71);
+  }
+}
+.map {
+  display: flex;
+  justify-content: center;
+}
+.moveMarker {
+  position: relative;
+  width: 85%;
+  margin: auto;
+  .targetIcon {
+    position: absolute;
+  }
+}
+
+.addMarker {
+  display: flex;
+  align-items: center;
+  margin-left: 8%;
+  form.open {
+    width: 100%;
+  }
+  form {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    height: 80px;
+    width: 0px;
+    overflow: hidden;
+    transition: width 0.5s ease;
+
+    .radioInput {
+      overflow: hidden;
+      input[type='radio'] {
+        display: none;
+      }
+      img {
+        margin: 10px;
+      }
     }
-    .targetIcon{
-        position: absolute;
-        height: 20px;
-        width: 20px;
+    #carte {
+      display: none;
     }
+  }
+}
+
+.addPnj{
+  display: flex;
+  flex-direction: column;
+  div {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+  }
 }

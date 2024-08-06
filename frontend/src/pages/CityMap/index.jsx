@@ -9,7 +9,8 @@ export default function CityMap() {
   const { locationId } = useParams();
 
   const { data, dataLoading } = useFetch(`http://localhost:4200/api/villes/${locationId}`);
-  const [showImage, setShowImage] = useState(true);
+  const [showImage, setShowImage] = useState(false);
+  const [markerType, setMarkerType] = useState();
   const [pos, setPos] = useState({ top: 89, left: 5 });
 
   return (
@@ -21,12 +22,20 @@ export default function CityMap() {
           <InterractiveMap
             data={data}
             showImage={showImage}
+            markerType={markerType}
             pos={pos}
             setPos={setPos}
             locationData={data.place}
             dataLoading={dataLoading}
           />
-          <AddPlace showImage={showImage} setShowImage={setShowImage} pos={pos} locationId={locationId} />
+          <AddPlace
+            showImage={showImage}
+            setShowImage={setShowImage}
+            markerType={markerType}
+            setMarkerType={setMarkerType}
+            pos={pos}
+            locationId={locationId}
+          />
         </>
       )}
     </>

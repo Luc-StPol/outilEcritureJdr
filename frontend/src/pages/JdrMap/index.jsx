@@ -11,8 +11,8 @@ export default function JdrMap() {
   const { data, dataLoading } = useFetch(url);
 
   const { data: townsData, dataLoading: dataLoading2 } = useFetch(`http://localhost:4200/api/villes/all/${jdrId}`);
-
-  const [showImage, setShowImage] = useState(true);
+  const [markerType, setMarkerType] = useState();
+  const [showImage, setShowImage] = useState(false);
   const [pos, setPos] = useState({ top: 89, left: 5 });
 
   return (
@@ -24,12 +24,19 @@ export default function JdrMap() {
           <InterractiveMap
             data={data}
             showImage={showImage}
+            markerType={markerType}
             pos={pos}
             setPos={setPos}
             locationData={townsData}
             dataLoading={dataLoading2}
           />
-          <AddTown showImage={showImage} setShowImage={setShowImage} pos={pos} />
+          <AddTown
+            showImage={showImage}
+            setShowImage={setShowImage}
+            markerType={markerType}
+            setMarkerType={setMarkerType}
+            pos={pos}
+          />
         </>
       )}
     </>

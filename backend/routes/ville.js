@@ -7,6 +7,7 @@ const villeCtrl = require('../controllers/ville.js');
 router.post('/addville', multer, villeCtrl.addVille);
 router.post('/updateville/:id', multer, villeCtrl.updateVille);
 router.post('/addplace/:id', villeCtrl.addLocation);
+router.post('/updateville/:id/updateplace/:placeId', villeCtrl.updatePlace);
 
 router.get('/:id', villeCtrl.findVille);
 router.get('/all/:id', villeCtrl.findAllVille);

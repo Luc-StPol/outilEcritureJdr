@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { UpdateComponent } from '../../../utils/contexts';
 
 export default function DeleteChapter(props) {
   const [show, setShow] = useState(false);
+  const { update, setUpdate } = useContext(UpdateComponent);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -18,7 +20,7 @@ export default function DeleteChapter(props) {
 
     await fetch(url, request);
     setShow(false);
-    props.setUpdate(props.update + 1);
+    setUpdate(!update);
   }
 
   return (

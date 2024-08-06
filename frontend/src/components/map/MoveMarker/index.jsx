@@ -1,10 +1,19 @@
 import { useState } from 'react';
-import target from '../../../asset/icons/tag-solid.svg';
 import '../../../styles/componentStyle.scss';
+
+import cityIcon from '../../../asset/icons/cityIcon.png';
+import villageIcon from '../../../asset/icons/villageIcon.png';
+import dungeonIcon from '../../../asset/icons/dungeonIcon.png';
+import siteIcon from '../../../asset/icons/siteIcon.png';
+import habitationIcon from '../../../asset/icons/habitation.png';
+import marketPlaceIcon from '../../../asset/icons/MarketPlace.png';
+import taverneIcon from '../../../asset/icons/taverne.png';
 
 export default function MoveMarker(props) {
   const pos = props.pos;
   const [styleTarget, setStyleTarget] = useState(false);
+
+  const markerImg = [cityIcon, villageIcon, dungeonIcon, siteIcon, habitationIcon, taverneIcon, marketPlaceIcon];
 
   function handleClick(e) {
     const { clientX, clientY, currentTarget } = e;
@@ -21,14 +30,16 @@ export default function MoveMarker(props) {
     transform: `translate(-50%, -50%)`,
   };
 
+  console.log(props.markerType);
+
   return (
     <>
-      <div className="interractiveMap" onMouseMove={styleTarget ? handleClick : null}>
+      <div className="moveMarker" onMouseMove={styleTarget ? handleClick : null}>
         {props.children}
         <div>
           {props.showImage && (
             <img
-              src={target}
+              src={markerImg[props.markerType]}
               alt="target"
               className="targetIcon"
               style={targetStyle1}

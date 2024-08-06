@@ -18,15 +18,21 @@ exports.findPnj = (req, res, next) => {
     .catch((error) => res.status(404).json({ error }));
 };
 
-exports.findAllPnj = (req, res, next) => {
-  Pnj.find()
+exports.findByName = (req, res, next) => {
+  Pnj.find({ nom: { $regex: req.query.name, $options: 'i' }, jdrId: req.query.jdrId })
     .then((pnj) => res.status(200).json(pnj))
     .catch((error) => res.status(400).json({ error }));
 };
 
-exports.findPnjLocation = (req, res, next) => {
-  Pnj.find({ lieu: req.body.lieu })
+exports.findAllPnj = (req, res, next) => {
+  Pnj.find({ jdrId: req.params.jdrId })
     .then((pnj) => res.status(200).json(pnj))
+    .catch((error) => res.status(400).json({ error }));
+};
+
+exports.updatePnj = (req, res, next) => {
+  Pnj.updateOne({ _id: req.params.id }, { ...req.body })
+    .then(() => res.status(200).json({ message: 'pnj modiffier' }))
     .catch((error) => res.status(400).json({ error }));
 };
 
